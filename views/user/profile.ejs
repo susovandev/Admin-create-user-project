@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>User Profile</title>
+
+		<!-- Tailwind CSS CDN (use compiled version in prod) -->
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+
+	<body class="min-h-screen bg-gray-100 flex items-center justify-center">
+		<div class="w-full max-w-2xl bg-white rounded-lg shadow-lg p-8">
+			<!-- Header -->
+			<div class="border-b pb-4 mb-6">
+				<h1 class="text-3xl font-semibold text-gray-800">
+					User Profile
+				</h1>
+				<p class="text-sm text-gray-500">
+					Manage your account information
+				</p>
+			</div>
+
+			<!-- Profile Card -->
+			<div class="flex items-center gap-6 mb-8">
+				<div
+					class="h-20 w-20 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl font-bold"
+				>
+					<%= user.username.charAt(0).toUpperCase() %>
+				</div>
+
+				<div>
+					<h2 class="text-xl font-semibold text-gray-800">
+						<%= user.username %>
+					</h2>
+					<p class="text-gray-600">
+						<%= user.email %>
+					</p>
+				</div>
+			</div>
+
+			<!-- Details -->
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div>
+					<label class="block text-sm font-medium text-gray-500">
+						Username
+					</label>
+					<p class="mt-1 text-gray-800 font-medium">
+						<%= user.username %>
+					</p>
+				</div>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-500">
+						Email
+					</label>
+					<p class="mt-1 text-gray-800 font-medium">
+						<%= user.email %>
+					</p>
+				</div>
+
+				<div>
+					<label class="block text-sm font-medium text-gray-500">
+						Account Created
+					</label>
+					<p class="mt-1 text-gray-800 font-medium">
+						<%= new Intl.DateTimeFormat('en-US', {
+							year: 'numeric',
+							month: 'short',
+							day: '2-digit'
+						}).format(new Date(user.createdAt)) %>
+					</p>
+				</div>
+			</div>
+
+			<!-- Actions -->
+			<div class="mt-8 flex justify-end gap-4">
+				<a
+					href="/user/update-password"
+					class="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 transition"
+				>
+					Update Password
+				</a>
+				<a
+					href="/user/logout"
+					class="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 transition"
+				>
+					Logout
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
